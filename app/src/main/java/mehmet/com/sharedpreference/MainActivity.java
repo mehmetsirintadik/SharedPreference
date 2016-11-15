@@ -35,11 +35,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void userInformation() {
-        Users user = new Users();
-        name_string = user.getName();
-        email_string = user.getEmail();
-        name.setText(name_string);
-        email.setText(email_string);
+        String mailExtra = getIntent().getStringExtra("email");
+        String nameExtra = getIntent().getStringExtra("name");
+        name.setText(nameExtra);
+        email.setText(mailExtra);
     }
 
     @Override

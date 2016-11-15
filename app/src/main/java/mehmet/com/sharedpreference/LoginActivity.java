@@ -114,6 +114,8 @@ public class LoginActivity extends AppCompatActivity {
                     if (!user.getEmail().equals("null") || !user.getPassword().equals("null")){
                         if(user.getEmail().equals(mail_string) && user.getPassword().equals(password_string)){
                             Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            i.putExtra("name", user.getName());
+                            i.putExtra("email",user.getEmail());
                             startActivity(i);
                             finish();
 
