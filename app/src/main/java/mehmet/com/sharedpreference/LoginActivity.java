@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText mail, password;
 
     String mail_string, password_string;
+    Button loginWithDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
         login = (Button)findViewById(R.id.button);
         sign = (Button)findViewById(R.id.button2);
+        loginWithDb = (Button)findViewById(R.id.button5);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +97,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), SignActivity.class);
                 startActivity(i);
+            }
+        });
+
+        loginWithDb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }

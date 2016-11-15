@@ -2,7 +2,6 @@ package mehmet.com.sharedpreference;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,13 +23,23 @@ public class MainActivity extends AppCompatActivity {
 
         preferences =PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         editor =preferences.edit();
-        name_string=preferences.getString("name",name_string).toString();
-        email_string= preferences.getString("email",email_string).toString();
+//        name_string=preferences.getString("name",name_string).toString();
+//        email_string= preferences.getString("email",email_string).toString();
+//
+//        name.setText(name_string);
+//        email.setText(email_string);
 
+        userInformation();
+
+
+    }
+
+    private void userInformation() {
+        Users user = new Users();
+        name_string = user.getName();
+        email_string = user.getEmail();
         name.setText(name_string);
         email.setText(email_string);
-
-
     }
 
     @Override

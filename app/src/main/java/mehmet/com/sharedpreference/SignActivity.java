@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ public class SignActivity extends AppCompatActivity {
     Button signIn;
     EditText name, email, password;
     String name_string, email_string ,password_string;
+    Button signWithDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class SignActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.editText5);
 
         signIn = (Button)findViewById(R.id.button3);
+        signWithDb = (Button) findViewById(R.id.button4);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +72,42 @@ public class SignActivity extends AppCompatActivity {
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(i);
                     finish();
+                }
+            }
+        });
+
+        signWithDb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                name_string = name.getText().toString();
+                email_string = email.getText().toString();
+                password_string = password.getText().toString();
+                if (name_string.isEmpty() || email_string.isEmpty() || password_string.isEmpty()){
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(SignActivity.this);
+                    alertDialog.setTitle("Uyarı");
+                    alertDialog.setMessage("Alanları eksiksiz doldurunuz.");
+                    alertDialog.setCancelable(false);
+                    alertDialog.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    alertDialog.show();
+                }else {
+                    try{
+                        DbHandler db = new DbHandler(SignActivity.this);
+
+                        db.addUser(new Users(name_string, email_string, password_string));
+                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(i);
+                        finish();
+                        Log.e("success","yok");
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
                 }
             }
         });
