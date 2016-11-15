@@ -40,9 +40,9 @@ public class DbHandler extends SQLiteOpenHelper {
     public void addUser(Users user){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("KEY_NAME", user.getName());
-        values.put("KEY_EMAİL", user.getEmail());
-        values.put("KEY_PASSWORD", user.getPassword());
+        values.put(KEY_NAME, user.getName());
+        values.put(KEY_EMAİL, user.getEmail());
+        values.put(KEY_PASSWORD, user.getPassword());
 
         db.insert(TABLE_USERS, null, values);
         db.close();
@@ -50,9 +50,9 @@ public class DbHandler extends SQLiteOpenHelper {
     }
     public Users getUser(String email){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_USERS, new String[]{KEY_NAME, KEY_EMAİL, KEY_PASSWORD},"=?" , new String[]{String.valueOf(email)},null,null,null);
+        Cursor cursor = db.query(TABLE_USERS, new String[]{KEY_NAME, KEY_EMAİL, KEY_PASSWORD}, KEY_EMAİL +"=?" , new String[]{String.valueOf(email)},null,null,null);
 
-        if (cursor != null){
+        if (cursor.getCount() !=0){
             cursor.moveToFirst();
             Users users = new Users(cursor.getString(0), cursor.getString(1), cursor.getString(2));
             return users;

@@ -103,7 +103,35 @@ public class LoginActivity extends AppCompatActivity {
         loginWithDb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DbHandler db = new DbHandler(LoginActivity.this);
+                mail_string = mail.getText().toString();
+                password_string = password.getText().toString();
 
+                Users user = new Users();
+                if (db.getUser(mail_string)!=null){
+                    user = db.getUser(mail_string);
+                    System.out.println(mail_string + user.getEmail() + password_string + user.getPassword());
+                    if (!user.getEmail().equals("null") || !user.getPassword().equals("null")){
+                        if(user.getEmail().equals(mail_string) && user.getPassword().equals(password_string)){
+                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(i);
+                            finish();
+
+
+                        }else{
+                            AlertDialog.Builder alertDialog = new AlertDialog.Builder(LoginActivity.this);
+                            alertDialog.setTitle("Hata");
+                            alertDialog.setMessage("Mailiniz veya Şifreniz Uyuşmuyor!");
+                            alertDialog.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            alertDialog.show();
+                        }
+                    }
+
+                }
             }
         });
     }
