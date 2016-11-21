@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.List;
+
 
 /**
  * Created by Mehmet on 8.11.2016.
@@ -74,5 +76,22 @@ public class DbHandler extends SQLiteOpenHelper {
     public void deleteUser(Users user){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_USERS, KEY_EMAİL + "=?", new String[]{String.valueOf(user.getEmail())});
+    }
+
+    public List<Users> getAllUsers(){
+        List<Users> userList = new List<Users>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "select * from" + TABLE_USERS;
+        Cursor cursor = db.rawQuery(selectQuery,null);
+        if (cursor.moveToFirst()){
+            do{
+                Users user = new Users();
+                user.setName(cursor.getString(0));
+                user.setEmail(cursor.getString(1));
+                user.setPassword(cursor.getString(2));
+            }while (cursor.moveToNext());
+        }
+        return userList;
     }
 }
