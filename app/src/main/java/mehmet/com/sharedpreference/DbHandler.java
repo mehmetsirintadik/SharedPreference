@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -79,7 +80,7 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     public List<Users> getAllUsers(){
-        List<Users> userList = new List<Users>();
+        List<Users> userList = new ArrayList<Users>();
 
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "select * from" + TABLE_USERS;
@@ -90,6 +91,7 @@ public class DbHandler extends SQLiteOpenHelper {
                 user.setName(cursor.getString(0));
                 user.setEmail(cursor.getString(1));
                 user.setPassword(cursor.getString(2));
+                userList.add(user);
             }while (cursor.moveToNext());
         }
         return userList;
