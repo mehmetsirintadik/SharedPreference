@@ -3,6 +3,7 @@ package mehmet.com.sharedpreference;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class CustomListViewActivity extends Activity {
             listView.setAdapter(listViewAdapter);
 
         }catch (Exception e){
-            e.printStackTrace();
+            Toast.makeText(getApplicationContext(),""+ e.getMessage(),Toast.LENGTH_LONG).show();
         }
 
     }

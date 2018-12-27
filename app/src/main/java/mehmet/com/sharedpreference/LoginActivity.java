@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                     System.out.println(mail_string + user.getEmail() + password_string + user.getPassword());
                     if (!user.getEmail().equals("null") || !user.getPassword().equals("null")){
                         if(user.getEmail().equals(mail_string) && user.getPassword().equals(password_string)){
-                            Intent i = new Intent(getApplicationContext(), CustomListViewActivity.class);
+                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(i);
                             finish();
                         }else{
