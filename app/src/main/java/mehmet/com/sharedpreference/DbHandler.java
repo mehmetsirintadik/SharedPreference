@@ -36,7 +36,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db  , int oldVersion, int newVersion){
-        db.execSQL("DROP TABLE IF EXIST UsersTable");
+        db.execSQL("DROP TABLE IF EXISTS UsersTable");
         onCreate(db);
     }
 
@@ -83,7 +83,7 @@ public class DbHandler extends SQLiteOpenHelper {
         List<Users> userList = new ArrayList<Users>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "select * from" + TABLE_USERS;
+        String selectQuery = "select * from " + TABLE_USERS;
         Cursor cursor = db.rawQuery(selectQuery,null);
         if (cursor.moveToFirst()){
             do{

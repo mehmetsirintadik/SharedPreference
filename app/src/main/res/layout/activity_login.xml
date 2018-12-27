@@ -15,7 +15,7 @@
         android:ems="10"
         android:layout_alignParentTop="true"
         android:layout_marginTop="38dp"
-        android:id="@+id/editText"
+        android:id="@+id/txtMail"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -27,11 +27,11 @@
         android:inputType="textPassword"
         android:hint="Password"
         android:ems="10"
-        android:layout_below="@+id/editText"
-        android:layout_alignRight="@+id/editText"
-        android:layout_alignEnd="@+id/editText"
+        android:layout_below="@+id/txtMail"
+        android:layout_alignRight="@+id/txtMail"
+        android:layout_alignEnd="@+id/txtMail"
         android:layout_marginTop="22dp"
-        android:id="@+id/editText2"
+        android:id="@+id/txtPassword"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -39,36 +39,36 @@
 
     <LinearLayout
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/txtPassword"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:weightSum="1">
 
         <Button
-            android:layout_marginStart="10dp"
-            android:text="DbLogin"
+            android:id="@+id/btnDbLogin"
+            android:layout_marginLeft="10dp"
+            android:text="Db Giriş"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:id="@+id/button5"
             android:layout_weight="0.3"
             />
 
         <Button
-            android:text="Sign"
+            android:id="@+id/btnKayit"
+            android:text="Kayıt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button2"
             android:layout_weight="0.3"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
 
         <Button
-            android:text="Login"
+            android:id="@+id/btnLogin"
+            android:text="Giriş"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button"
             android:layout_weight="0.3"/>
 
     </LinearLayout>

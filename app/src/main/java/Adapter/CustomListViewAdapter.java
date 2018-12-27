@@ -60,7 +60,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Users> {
         private TextView email;
 
         public ViewHolder(View v) {
-            image = (ImageView) v.findViewById(R.id.image);
+            image = (ImageView) v.findViewById(R.id.thumbnail);
             name = (TextView) v.findViewById(R.id.name1);
             email =(TextView) v.findViewById(R.id.email1);
 

@@ -41,12 +41,12 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        mail = (EditText)findViewById(R.id.editText);
-        password = (EditText)findViewById(R.id.editText2);
+        mail = (EditText)findViewById(R.id.txtMail);
+        password = (EditText)findViewById(R.id.txtPassword);
 
-        login = (Button)findViewById(R.id.button);
-        sign = (Button)findViewById(R.id.button2);
-        loginWithDb = (Button)findViewById(R.id.button5);
+        login = (Button)findViewById(R.id.btnLogin);
+        sign = (Button)findViewById(R.id.btnKayit);
+        loginWithDb = (Button)findViewById(R.id.btnDbLogin);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,13 +113,9 @@ public class LoginActivity extends AppCompatActivity {
                     System.out.println(mail_string + user.getEmail() + password_string + user.getPassword());
                     if (!user.getEmail().equals("null") || !user.getPassword().equals("null")){
                         if(user.getEmail().equals(mail_string) && user.getPassword().equals(password_string)){
-                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                            i.putExtra("name", user.getName());
-                            i.putExtra("email",user.getEmail());
+                            Intent i = new Intent(getApplicationContext(), CustomListViewActivity.class);
                             startActivity(i);
                             finish();
-
-
                         }else{
                             AlertDialog.Builder alertDialog = new AlertDialog.Builder(LoginActivity.this);
                             alertDialog.setTitle("Hata");

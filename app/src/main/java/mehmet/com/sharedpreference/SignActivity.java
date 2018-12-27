@@ -35,12 +35,12 @@ public class SignActivity extends AppCompatActivity {
         preference = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         editor = preference.edit();
 
-        name = (EditText) findViewById(R.id.editText3);
-        email = (EditText) findViewById(R.id.editText4);
-        password = (EditText) findViewById(R.id.editText5);
+        name = (EditText) findViewById(R.id.edtName);
+        email = (EditText) findViewById(R.id.edtEmail);
+        password = (EditText) findViewById(R.id.edtPassword);
 
-        signIn = (Button)findViewById(R.id.button3);
-        signWithDb = (Button) findViewById(R.id.button4);
+        signIn = (Button)findViewById(R.id.btnKayit2);
+        signWithDb = (Button) findViewById(R.id.btnDbSign);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,16 +62,18 @@ public class SignActivity extends AppCompatActivity {
                     });
                     alertDialog.show();
                 }else {
-
                     editor.putBoolean("login",true);
                     editor.putString("name",name_string);
                     editor.putString("email",email_string);
                     editor.putString("password", password_string);
                     editor.commit();
-
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(i);
-                    finish();
+                    try{
+                        Intent intent = new Intent(SignActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
         });

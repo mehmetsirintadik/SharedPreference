@@ -7,6 +7,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import Adapter.CustomListViewAdapter;
+
 /**
  * Created by Mehmet on 21.11.2016.
  */
@@ -14,13 +16,23 @@ import java.util.List;
 public class CustomListViewActivity extends Activity {
 
     ArrayList<Users> users = new ArrayList<Users>();
+    private CustomListViewAdapter listViewAdapter;
+    ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customlistview);
-        ListView listView = (ListView) findViewById(R.id.listView);
 
         getData();
+        try{
+            listViewAdapter= new CustomListViewAdapter(CustomListViewActivity.this,0,users);
+            listView = (ListView) findViewById(R.id.listView);
+            listView.setAdapter(listViewAdapter);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     private void getData() {

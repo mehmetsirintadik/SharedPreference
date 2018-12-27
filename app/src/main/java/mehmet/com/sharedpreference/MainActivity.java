@@ -5,14 +5,17 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView name, email;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
-    String name_string, email_string;
+    ImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,25 +23,20 @@ public class MainActivity extends AppCompatActivity {
 
         name = (TextView)findViewById(R.id.name);
         email = (TextView)findViewById(R.id.email);
+        img=(ImageView)findViewById(R.id.photo);
 
         preferences =PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         editor =preferences.edit();
-//        name_string=preferences.getString("name",name_string).toString();
-//        email_string= preferences.getString("email",email_string).toString();
-//
-//        name.setText(name_string);
-//        email.setText(email_string);
 
         userInformation();
-
-
     }
 
     private void userInformation() {
-        String mailExtra = getIntent().getStringExtra("email");
-        String nameExtra = getIntent().getStringExtra("name");
+        String mailExtra = preferences.getString("email","email");
+        String nameExtra = preferences.getString("name","name");
         name.setText(nameExtra);
         email.setText(mailExtra);
+        Picasso.with(this).load("http://nulm.gov.in/images/user.png").into(img);
     }
 
     @Override
